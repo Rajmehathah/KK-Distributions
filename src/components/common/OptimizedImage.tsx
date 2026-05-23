@@ -8,73 +8,67 @@ interface OptimizedImageProps {
   className?: string;
 }
 
-// Highly curated high-resolution eCommerce Unsplash mappings matching FMCG category lines
+// Curated high-resolution, premium spiritual incense and packaging Unsplash assets matching the Bansuri catalogue
 const PRODUCT_IMAGES: Record<string, string> = {
-  // Agarbathis
-  'agarbathi-1': 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80', // sandalwood incense
-  'agarbathi-2': 'https://images.unsplash.com/photo-1602989423168-52fb97992987?auto=format&fit=crop&w=600&q=80', // rose fragrance
-  'agarbathi-3': 'https://images.unsplash.com/photo-1595853035070-59a39fe84de3?auto=format&fit=crop&w=600&q=80', // jasmine flora
-  'agarbathi-4': 'https://images.unsplash.com/photo-1609137144813-2d2c161947b1?auto=format&fit=crop&w=600&q=80', // temple Gold
-  'agarbathi-5': 'https://images.unsplash.com/photo-1528183429752-a97d0bf99b5a?auto=format&fit=crop&w=600&q=80', // lavender
-  'agarbathi-6': 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80', // royal musk
-  'agarbathi-7': 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=600&q=80', // camphor sacred
-  
-  // Biscuits
-  'biscuit-1': 'https://images.unsplash.com/photo-1558961309-dbdf71799f14?auto=format&fit=crop&w=600&q=80', // butter cookies
-  'biscuit-2': 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=80', // choco cookies
-  'biscuit-3': 'https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?auto=format&fit=crop&w=600&q=80', // milk biscuits
-  'biscuit-4': 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80', // coconut bites
-  'biscuit-5': 'https://images.unsplash.com/photo-1590083473918-c7ae77686014?auto=format&fit=crop&w=600&q=80', // cardamom tea
-  'biscuit-6': 'https://images.unsplash.com/photo-1530601273649-16327e57c6df?auto=format&fit=crop&w=600&q=80', // digestive
-  'biscuit-7': 'https://images.unsplash.com/photo-1532499016263-f2c3e89df9cd?auto=format&fit=crop&w=600&q=80', // cashew cookies
-  
-  // Mixtures
-  'snack-1': 'https://images.unsplash.com/photo-1601050690597-df056fb49785?auto=format&fit=crop&w=600&q=80', // spicy madras mixture
-  'snack-2': 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80', // corn flakes
-  'snack-3': 'https://images.unsplash.com/photo-1601050690696-9799a7f34c26?auto=format&fit=crop&w=600&q=80', // garlic sev
-  'snack-4': 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=600&q=80', // masala peanuts
-  'snack-5': 'https://images.unsplash.com/photo-1566478989037-eec170784d0b?auto=format&fit=crop&w=600&q=80', // potato chips
-  'snack-6': 'https://images.unsplash.com/photo-1601050691497-20c57f910b8d?auto=format&fit=crop&w=600&q=80', // murukku
-  'snack-7': 'https://images.unsplash.com/photo-1626132647523-66f5bf380027?auto=format&fit=crop&w=600&q=80', // ribbon pakoda
-  
-  // Beverages
-  'beverage-1': 'https://images.unsplash.com/photo-1534353436294-0dbd4bdac845?auto=format&fit=crop&w=600&q=80', // mango juice
-  'beverage-2': 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=600&q=80', // lemon mint soda
-  'beverage-3': 'https://images.unsplash.com/photo-1625772291427-f6524d9898c5?auto=format&fit=crop&w=600&q=80', // cola can
-  'beverage-4': 'https://images.unsplash.com/photo-1622543953490-0b70d38a8a68?auto=format&fit=crop&w=600&q=80', // energy active
-  'beverage-5': 'https://images.unsplash.com/photo-1527960656306-ff37c414729a?auto=format&fit=crop&w=600&q=80', // tender coconut
-  'beverage-6': 'https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=600&q=80', // orange juice
-  'beverage-7': 'https://images.unsplash.com/photo-1608885898957-a599fb1b1a44?auto=format&fit=crop&w=600&q=80', // mineral water
-  
-  // Household Essentials
-  'household-1': 'https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?auto=format&fit=crop&w=600&q=80', // lemon dish wash
-  'household-2': 'https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=600&q=80', // floor cleaner citrus
-  'household-3': 'https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=600&q=80', // washing powder
-  'household-4': 'https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=600&q=80', // aloe handwash
-  'household-5': 'https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&w=600&q=80', // toilet cleaner
-  'household-6': 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=600&q=80', // kitchen rolls
-  'household-7': 'https://images.unsplash.com/photo-1611288875054-c7a382d33585?auto=format&fit=crop&w=600&q=80', // garbage bags
-  
-  // Grocery
-  'grocery-1': 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80', // basmati rice bag
-  'grocery-2': 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80', // unpolished dal
-  'grocery-3': 'https://images.unsplash.com/photo-1581608597305-3797b08c4801?auto=format&fit=crop&w=600&q=80', // sulphur sugar
-  'grocery-4': 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80', // wheat flour bag
-  'grocery-5': 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=600&q=80', // wood-press groundnut oil
-  'grocery-6': 'https://images.unsplash.com/photo-1604882737321-e6937fd6f519?auto=format&fit=crop&w=600&q=80', // pure salt pack
-  'grocery-7': 'https://images.unsplash.com/photo-1581600140682-d4e68c8cde32?auto=format&fit=crop&w=600&q=80' // golden turmeric
+  // Category 1: Packet Series
+  'bansuri-packet-classic-19': 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80', // sandalwood incense burning
+  'bansuri-packet-classic-120': 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80',
+  'bansuri-packet-vibe-120': 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=600&q=80', // vibrant spiritual smoke
+  'bansuri-packet-pineapple-42': 'https://images.unsplash.com/photo-1595853035070-59a39fe84de3?auto=format&fit=crop&w=600&q=80', // pineapple sweet flame
+  'bansuri-packet-mogra-19': 'https://images.unsplash.com/photo-1602989423168-52fb97992987?auto=format&fit=crop&w=600&q=80', // jasmine mogra ambient
+  'bansuri-packet-lavender-120': 'https://images.unsplash.com/photo-1528183429752-a97d0bf99b5a?auto=format&fit=crop&w=600&q=80', // calm lavender field
+  'bansuri-packet-chandan-19': 'https://images.unsplash.com/photo-1508500383182-6c18550db061?auto=format&fit=crop&w=600&q=80', // sandalwood logs
+  'bansuri-packet-rose-120': 'https://images.unsplash.com/photo-1602989423168-52fb97992987?auto=format&fit=crop&w=600&q=80', // floral rose burner
+
+  // Category 2: Special Series
+  'bansuri-special-beats-45': 'https://images.unsplash.com/photo-1612182062633-9ff3b3598eeb?auto=format&fit=crop&w=600&q=80', // beats golden aura
+  'bansuri-special-beats-100': 'https://images.unsplash.com/photo-1612182062633-9ff3b3598eeb?auto=format&fit=crop&w=600&q=80',
+  'bansuri-special-melody-100': 'https://images.unsplash.com/photo-1595853035070-59a39fe84de3?auto=format&fit=crop&w=600&q=80', // melody smoke
+  'bansuri-special-natya-45': 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=600&q=80', // spiritual dance natya
+  'bansuri-special-kissa-100': 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80', // story kissa lore
+
+  // Category 3: Pouch Series
+  'bansuri-pouch-classic': 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80',
+  'bansuri-pouch-chandan': 'https://images.unsplash.com/photo-1508500383182-6c18550db061?auto=format&fit=crop&w=600&q=80',
+  'bansuri-pouch-mogra': 'https://images.unsplash.com/photo-1602989423168-52fb97992987?auto=format&fit=crop&w=600&q=80',
+  'bansuri-pouch-pineapple': 'https://images.unsplash.com/photo-1595853035070-59a39fe84de3?auto=format&fit=crop&w=600&q=80',
+
+  // Category 4: Wet Dhoop
+  'bansuri-wet-classic': 'https://images.unsplash.com/photo-1609137144813-2d2c161947b1?auto=format&fit=crop&w=600&q=80', // cones on bronze plate
+  'bansuri-wet-chandan': 'https://images.unsplash.com/photo-1609137144813-2d2c161947b1?auto=format&fit=crop&w=600&q=80',
+  'bansuri-wet-rose': 'https://images.unsplash.com/photo-1609137144813-2d2c161947b1?auto=format&fit=crop&w=600&q=80',
+
+  // Category 5: Premium Wet Dhoop
+  'bansuri-premium-wet-classic': 'https://images.unsplash.com/photo-1609137144813-2d2c161947b1?auto=format&fit=crop&w=600&q=80', // dhoop cups and cones
+  'bansuri-premium-wet-rose': 'https://images.unsplash.com/photo-1609137144813-2d2c161947b1?auto=format&fit=crop&w=600&q=80',
+  'bansuri-premium-wet-guggal': 'https://images.unsplash.com/photo-1609137144813-2d2c161947b1?auto=format&fit=crop&w=600&q=80',
+
+  // Category 6: Solid Dhoop
+  'bansuri-solid-guggal': 'https://images.unsplash.com/photo-1602989423168-52fb97992987?auto=format&fit=crop&w=600&q=80',
+  'bansuri-solid-chandan': 'https://images.unsplash.com/photo-1602989423168-52fb97992987?auto=format&fit=crop&w=600&q=80',
+
+  // Category 7: Sambrani Series
+  'bansuri-sambrani-cup-12': 'https://images.unsplash.com/photo-1609137144813-2d2c161947b1?auto=format&fit=crop&w=600&q=80', // sambrani cup burning
+  'bansuri-sambrani-cones-10': 'https://images.unsplash.com/photo-1602989423168-52fb97992987?auto=format&fit=crop&w=600&q=80',
+
+  // Category 8: Premium Series
+  'vasu-agarbathi-60': 'https://images.unsplash.com/photo-1612182062633-9ff3b3598eeb?auto=format&fit=crop&w=600&q=80',
+  'vasu-agarbathi-108': 'https://images.unsplash.com/photo-1612182062633-9ff3b3598eeb?auto=format&fit=crop&w=600&q=80',
+  'bansuri-hexa-classic': 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80'
 };
 
 const CATEGORY_FALLBACKS: Record<string, string> = {
-  'dhoop-agarbathi': 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80',
-  'biscuits': 'https://images.unsplash.com/photo-1558961309-dbdf71799f14?auto=format&fit=crop&w=600&q=80',
-  'mixtures-snacks': 'https://images.unsplash.com/photo-1601050690597-df056fb49785?auto=format&fit=crop&w=600&q=80',
-  'beverages': 'https://images.unsplash.com/photo-1534353436294-0dbd4bdac845?auto=format&fit=crop&w=600&q=80',
-  'household-essentials': 'https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?auto=format&fit=crop&w=600&q=80',
-  'daily-grocery': 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80'
+  'bansuri-packet': 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80',
+  'bansuri-special': 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=600&q=80',
+  'bansuri-pouch': 'https://images.unsplash.com/photo-1595853035070-59a39fe84de3?auto=format&fit=crop&w=600&q=80',
+  'wet-dhoop': 'https://images.unsplash.com/photo-1609137144813-2d2c161947b1?auto=format&fit=crop&w=600&q=80',
+  'premium-wet-dhoop': 'https://images.unsplash.com/photo-1609137144813-2d2c161947b1?auto=format&fit=crop&w=600&q=80',
+  'solid-dhoop': 'https://images.unsplash.com/photo-1602989423168-52fb97992987?auto=format&fit=crop&w=600&q=80',
+  'sambrani-series': 'https://images.unsplash.com/photo-1609137144813-2d2c161947b1?auto=format&fit=crop&w=600&q=80',
+  'premium-agarbathi-series': 'https://images.unsplash.com/photo-1612182062633-9ff3b3598eeb?auto=format&fit=crop&w=600&q=80'
 };
 
-const DUMMY_DEFAULT = 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80'; // generic grocery shelf
+const DUMMY_DEFAULT = 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80'; // Sandalwood incense default
 
 export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   productId,
@@ -117,6 +111,12 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
     }
   };
 
+  const isIncenseCategory = 
+    category?.startsWith('bansuri') || 
+    category?.includes('dhoop') || 
+    category?.includes('sambrani') || 
+    category?.includes('agarbathi');
+
   return (
     <div className={`relative overflow-hidden w-full h-full bg-brand-cream-200 dark:bg-brand-charcoal-800 transition-colors duration-300 ${className}`}>
       
@@ -138,7 +138,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
       />
 
       {/* BRAND CARD OVERLAY WATERMARK */}
-      {isLoaded && category === 'dhoop-agarbathi' && (
+      {isLoaded && isIncenseCategory && (
         <div className="absolute inset-0 bg-gradient-to-t from-brand-sandalwood-900/40 via-transparent to-transparent pointer-events-none" />
       )}
     </div>

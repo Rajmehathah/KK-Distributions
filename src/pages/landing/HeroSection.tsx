@@ -182,12 +182,13 @@ export const HeroSection: React.FC = () => {
             {/* FLOATING CARD 1: CYCLE PURE SANDAL AGARBATHI */}
             <div
               ref={card1Ref}
-              className="absolute top-[5%] left-[2%] w-[190px] p-3 rounded-2xl bg-white/80 dark:bg-brand-charcoal-900/80 border border-brand-sandalwood-500/20 dark:border-brand-gold-900/30 shadow-2xl backdrop-blur-md transform -rotate-6 transition-all duration-300 hover:z-20 group"
+              onClick={() => navigate('/products?id=bansuri-packet-classic-120')}
+              className="absolute top-[5%] left-[2%] w-[190px] p-3 rounded-2xl bg-white/80 dark:bg-brand-charcoal-900/80 border border-brand-sandalwood-500/20 dark:border-brand-gold-900/30 shadow-2xl backdrop-blur-md transform -rotate-6 transition-all duration-300 hover:z-20 group cursor-pointer"
             >
               <div className="w-full h-32 rounded-xl overflow-hidden mb-3 shadow-inner relative">
                 <OptimizedImage
-                  productId="agarbathi-1"
-                  category="dhoop-agarbathi"
+                  productId="bansuri-packet-classic-120"
+                  category="bansuri-packet"
                   alt="Cycle Pure Sandal Agarbathi"
                   className="w-full h-full object-cover"
                 />
@@ -211,12 +212,13 @@ export const HeroSection: React.FC = () => {
             {/* FLOATING CARD 2: NANDITA DIVINE LAVENDER AGARBATHI */}
             <div
               ref={card2Ref}
-              className="absolute bottom-[5%] right-[2%] w-[190px] p-3 rounded-2xl bg-white/80 dark:bg-brand-charcoal-900/80 border border-brand-sandalwood-500/20 dark:border-brand-gold-900/30 shadow-2xl backdrop-blur-md transform rotate-3 transition-all duration-300 hover:z-20 group"
+              onClick={() => navigate('/products?id=bansuri-packet-lavender-120')}
+              className="absolute bottom-[5%] right-[2%] w-[190px] p-3 rounded-2xl bg-white/80 dark:bg-brand-charcoal-900/80 border border-brand-sandalwood-500/20 dark:border-brand-gold-900/30 shadow-2xl backdrop-blur-md transform rotate-3 transition-all duration-300 hover:z-20 group cursor-pointer"
             >
               <div className="w-full h-32 rounded-xl overflow-hidden mb-3 shadow-inner relative">
                 <OptimizedImage
-                  productId="agarbathi-5"
-                  category="dhoop-agarbathi"
+                  productId="bansuri-packet-lavender-120"
+                  category="bansuri-packet"
                   alt="Nandita Divine Lavender Agarbathi"
                   className="w-full h-full object-cover"
                 />

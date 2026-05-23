@@ -7,6 +7,7 @@ import type { Product } from '../../data/dummyData';
 import { useCartStore } from '../../store/cartStore';
 import { useAuthStore } from '../../store/authStore';
 import { showToast } from '../../store/toastStore';
+import OptimizedImage from '../../components/common/OptimizedImage';
 
 const iconMap: Record<string, React.ComponentType<any>> = {
   Sparkles,
@@ -145,15 +146,18 @@ export const CategoryCarousel: React.FC = () => {
                     </div>
 
                     {/* PRODUCT VISUAL IMAGE */}
-                    <div className={`w-full h-44 rounded-xl ${p.image} shadow-inner mb-4 flex items-center justify-center relative overflow-hidden`}>
+                    <div className="w-full h-44 rounded-xl shadow-inner mb-4 flex items-center justify-center relative overflow-hidden border border-brand-sandalwood-500/10 dark:border-brand-gold-900/10">
+                      <OptimizedImage
+                        productId={p.id}
+                        category={p.category}
+                        alt={p.name}
+                        className="w-full h-full"
+                      />
                       <div className="absolute inset-0 bg-black/5 opacity-0 group-hover/card:opacity-100 transition-opacity flex items-center justify-center">
                         <div className="w-10 h-10 rounded-full bg-white text-brand-charcoal-900 flex items-center justify-center shadow-md transform translate-y-3 group-hover/card:translate-y-0 transition-all duration-300">
                           <Eye className="w-5 h-5" />
                         </div>
                       </div>
-                      <span className="text-sm text-brand-cream-100 font-extrabold uppercase p-4 text-center leading-tight drop-shadow-md">
-                        {p.name}
-                      </span>
                     </div>
 
                     {/* RATINGS */}
