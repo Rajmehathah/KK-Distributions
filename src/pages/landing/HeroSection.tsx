@@ -179,7 +179,7 @@ export const HeroSection: React.FC = () => {
           {/* RIGHT COLUMN: CINEMATIC FLOATING CARDS */}
           <div className="lg:col-span-5 relative w-full h-[450px] flex items-center justify-center">
             
-            {/* FLOATING CARD 1: ROYAL SANDALWOOD AGARBATHI */}
+            {/* FLOATING CARD 1: CYCLE PURE SANDAL AGARBATHI */}
             <div
               ref={card1Ref}
               className="absolute top-[5%] left-[2%] w-[190px] p-3 rounded-2xl bg-white/80 dark:bg-brand-charcoal-900/80 border border-brand-sandalwood-500/20 dark:border-brand-gold-900/30 shadow-2xl backdrop-blur-md transform -rotate-6 transition-all duration-300 hover:z-20 group"
@@ -188,7 +188,7 @@ export const HeroSection: React.FC = () => {
                 <OptimizedImage
                   productId="agarbathi-1"
                   category="dhoop-agarbathi"
-                  alt="Royal Sandalwood Incense"
+                  alt="Cycle Pure Sandal Agarbathi"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-sandalwood-950/40 to-transparent" />
@@ -197,10 +197,10 @@ export const HeroSection: React.FC = () => {
                 </span>
               </div>
               <h4 className="text-[11px] font-bold text-brand-charcoal-900 dark:text-brand-cream-50 uppercase tracking-tight line-clamp-1 group-hover:text-brand-sandalwood-500 dark:group-hover:text-brand-gold-400 transition-colors">
-                Royal Sandalwood
+                CYCLE PURE SANDAL AGARBATHI
               </h4>
               <p className="text-[10px] text-brand-sandalwood-900 dark:text-brand-gold-500 font-extrabold uppercase mt-0.5">
-                B2B: ₹110 / Pack
+                B2B: ₹90 / PACK
               </p>
               <div className="flex items-center gap-1 mt-1 text-[8px] text-brand-charcoal-400 dark:text-brand-cream-400 font-medium">
                 <Sparkles className="w-2.5 h-2.5 text-brand-gold-900" />
@@ -208,32 +208,32 @@ export const HeroSection: React.FC = () => {
               </div>
             </div>
 
-            {/* FLOATING CARD 2: VARANASI TEMPLE SACRED DHOOP */}
+            {/* FLOATING CARD 2: NANDITA DIVINE LAVENDER AGARBATHI */}
             <div
               ref={card2Ref}
               className="absolute bottom-[5%] right-[2%] w-[190px] p-3 rounded-2xl bg-white/80 dark:bg-brand-charcoal-900/80 border border-brand-sandalwood-500/20 dark:border-brand-gold-900/30 shadow-2xl backdrop-blur-md transform rotate-3 transition-all duration-300 hover:z-20 group"
             >
               <div className="w-full h-32 rounded-xl overflow-hidden mb-3 shadow-inner relative">
                 <OptimizedImage
-                  productId="agarbathi-4"
+                  productId="agarbathi-5"
                   category="dhoop-agarbathi"
-                  alt="Varanasi Temple Sacred Dhoop"
+                  alt="Nandita Divine Lavender Agarbathi"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-sandalwood-950/40 to-transparent" />
                 <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-brand-sandalwood-900 text-brand-cream-50 font-bold text-[8px] uppercase tracking-wider shadow-sm">
-                  Sacred Blend
+                  Premium Blend
                 </span>
               </div>
               <h4 className="text-[11px] font-bold text-brand-charcoal-900 dark:text-brand-cream-50 uppercase tracking-tight line-clamp-1 group-hover:text-brand-sandalwood-500 dark:group-hover:text-brand-gold-400 transition-colors">
-                Temple Sacred Dhoop
+                NANDITA DIVINE LAVENDER AGARBATHI
               </h4>
               <p className="text-[10px] text-brand-sandalwood-900 dark:text-brand-gold-500 font-extrabold uppercase mt-0.5">
-                B2B: ₹150 / Pack
+                B2B: ₹85 / PACK
               </p>
               <div className="flex items-center gap-1 mt-1 text-[8px] text-brand-charcoal-400 dark:text-brand-cream-400 font-medium">
                 <Sparkles className="w-2.5 h-2.5 text-brand-gold-900" />
-                <span>Guggul, Loban & Camphor</span>
+                <span>Long Lasting Fragrance</span>
               </div>
             </div>
 

@@ -11,7 +11,7 @@ interface OptimizedImageProps {
 // Highly curated high-resolution eCommerce Unsplash mappings matching FMCG category lines
 const PRODUCT_IMAGES: Record<string, string> = {
   // Agarbathis
-  'agarbathi-1': 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80', // sandalwood incense
+  'agarbathi-1': 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80', // sandalwood incense
   'agarbathi-2': 'https://images.unsplash.com/photo-1602989423168-52fb97992987?auto=format&fit=crop&w=600&q=80', // rose fragrance
   'agarbathi-3': 'https://images.unsplash.com/photo-1595853035070-59a39fe84de3?auto=format&fit=crop&w=600&q=80', // jasmine flora
   'agarbathi-4': 'https://images.unsplash.com/photo-1609137144813-2d2c161947b1?auto=format&fit=crop&w=600&q=80', // temple Gold
@@ -62,11 +62,11 @@ const PRODUCT_IMAGES: Record<string, string> = {
   'grocery-4': 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80', // wheat flour bag
   'grocery-5': 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=600&q=80', // wood-press groundnut oil
   'grocery-6': 'https://images.unsplash.com/photo-1604882737321-e6937fd6f519?auto=format&fit=crop&w=600&q=80', // pure salt pack
-  'grocery-7': 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80' // golden turmeric
+  'grocery-7': 'https://images.unsplash.com/photo-1581600140682-d4e68c8cde32?auto=format&fit=crop&w=600&q=80' // golden turmeric
 };
 
 const CATEGORY_FALLBACKS: Record<string, string> = {
-  'dhoop-agarbathi': 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80',
+  'dhoop-agarbathi': 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80',
   'biscuits': 'https://images.unsplash.com/photo-1558961309-dbdf71799f14?auto=format&fit=crop&w=600&q=80',
   'mixtures-snacks': 'https://images.unsplash.com/photo-1601050690597-df056fb49785?auto=format&fit=crop&w=600&q=80',
   'beverages': 'https://images.unsplash.com/photo-1534353436294-0dbd4bdac845?auto=format&fit=crop&w=600&q=80',
