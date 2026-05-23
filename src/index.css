@@ -1,0 +1,100 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', 'Poppins', sans-serif;
+  }
+
+  body {
+    @apply transition-colors duration-300;
+  }
+
+  /* Custom scrollbar matching premium theme */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-brand-cream-50 dark:bg-brand-charcoal-950;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-brand-orange-300 dark:bg-brand-charcoal-800 rounded-full hover:bg-brand-orange-500 dark:hover:bg-brand-gold-900 transition-colors duration-300;
+  }
+}
+
+@layer components {
+  /* Premium Glassmorphic utilities */
+  .glass-card {
+    background: rgba(252, 249, 242, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(230, 81, 0, 0.08);
+  }
+
+  .dark .glass-card {
+    background: rgba(18, 18, 18, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 179, 0, 0.08);
+  }
+
+  .glass-card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:shadow-brand-orange-500/5 hover:-translate-y-1;
+  }
+
+  /* Hide scrollbar for clean carousels */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  /* Sleek modern gold/orange gradients */
+  .gradient-brand {
+    background: linear-gradient(135deg, #E65100 0%, #FFB300 100%);
+  }
+
+  .gradient-brand-hover {
+    background: linear-gradient(135deg, #FF5722 0%, #FFC107 100%);
+  }
+
+  .gradient-dark {
+    background: linear-gradient(135deg, #121212 0%, #0C0C0C 100%);
+  }
+
+  .gradient-cream {
+    background: linear-gradient(135deg, #FCF9F2 0%, #F5EFE0 100%);
+  }
+
+  /* Luxury card overlay borders */
+  .premium-border {
+    border-image: linear-gradient(to right, #E65100, #FFB300) 1;
+  }
+}
+
+/* Custom interactive animation helper classes */
+.interactive-tilt {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(135deg, #E65100 0%, #FFB300 100%);
+}
+
+.dark .text-gradient-gold {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(135deg, #FFB300 0%, #FCF9F2 100%);
+}

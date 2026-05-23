@@ -1,0 +1,27 @@
+{
+  "short_name": "KK Dist",
+  "name": "KK Distributions B2B Wholesale",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#E65100",
+  "background_color": "#FCF9F2"
+}
