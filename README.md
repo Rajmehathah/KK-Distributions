@@ -1,4 +1,4 @@
-# 🕉️ KK Distributions (Indira)
+#  KK Distributions (Indira)
 ### *Premium B2B Sacred Incense & FMCG Wholesale Platform*
 
 Welcome to the production-grade distribution portal for **KK Distributions (Indira)**. This repository houses the completely migrated, modern frontend stack designed with advanced UI/UX interactions, B2B authentication guards, and premium Indian spiritual-luxury aesthetics.
