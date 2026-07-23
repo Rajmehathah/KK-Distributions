@@ -1,0 +1,452 @@
+[
+  {
+    "id": "bansuri-packet-classic-19",
+    "name": "Bansuri Agarbathi Classic (19g)",
+    "category": "packet-series",
+    "folder": "packet-series",
+    "filename": "packet-series-classic-19",
+    "sizes": [
+      "19g",
+      "60g",
+      "120g"
+    ],
+    "mrp": [
+      15,
+      45,
+      75
+    ],
+    "b2bPrice": [
+      11,
+      34,
+      56
+    ],
+    "minB2bQty": 100,
+    "gstRate": 12,
+    "isBestseller": true,
+    "isNew": false,
+    "description": "Traditional aromatic incense sticks crafted with natural herbs and pure sandalwood extract."
+  },
+  {
+    "id": "bansuri-packet-classic-120",
+    "name": "Bansuri Agarbathi Classic (120g)",
+    "category": "packet-series",
+    "folder": "packet-series",
+    "filename": "packet-series-classic-120",
+    "sizes": [
+      "60g",
+      "120g",
+      "250g"
+    ],
+    "mrp": [
+      45,
+      75,
+      140
+    ],
+    "b2bPrice": [
+      34,
+      56,
+      105
+    ],
+    "minB2bQty": 50,
+    "gstRate": 12,
+    "isBestseller": true,
+    "isNew": false,
+    "description": "Value pack classic agarbathi for daily devotional prayers and soothing home fragrance."
+  },
+  {
+    "id": "bansuri-packet-vibe-120",
+    "name": "Bansuri Agarbathi Vibe (120g)",
+    "category": "packet-series",
+    "folder": "packet-series",
+    "filename": "packet-series-vibe-120",
+    "sizes": [
+      "42g",
+      "120g"
+    ],
+    "mrp": [
+      30,
+      75
+    ],
+    "b2bPrice": [
+      22,
+      56
+    ],
+    "minB2bQty": 60,
+    "gstRate": 12,
+    "isBestseller": false,
+    "isNew": true,
+    "description": "Energetic blend of modern floral and spicy notes designed for modern living spaces."
+  },
+  {
+    "id": "bansuri-packet-pineapple-42",
+    "name": "Bansuri Agarbathi Pineapple (42g)",
+    "category": "packet-series",
+    "folder": "packet-series",
+    "filename": "packet-series-pineapple-42",
+    "sizes": [
+      "42g",
+      "100g"
+    ],
+    "mrp": [
+      25,
+      60
+    ],
+    "b2bPrice": [
+      18,
+      45
+    ],
+    "minB2bQty": 80,
+    "gstRate": 12,
+    "isBestseller": false,
+    "isNew": false,
+    "description": "Sweet fruity pineapple fragrance offering a refreshing and uplifting atmosphere."
+  },
+  {
+    "id": "bansuri-packet-mogra-19",
+    "name": "Bansuri Agarbathi Mogra (19g)",
+    "category": "packet-series",
+    "folder": "packet-series",
+    "filename": "packet-series-mogra-19",
+    "sizes": [
+      "19g",
+      "60g",
+      "120g"
+    ],
+    "mrp": [
+      15,
+      45,
+      75
+    ],
+    "b2bPrice": [
+      11,
+      34,
+      56
+    ],
+    "minB2bQty": 100,
+    "gstRate": 12,
+    "isBestseller": false,
+    "isNew": false,
+    "description": "Intense fresh jasmine mogra incense sticks for evening rituals and meditation."
+  },
+  {
+    "id": "bansuri-packet-lavender-120",
+    "name": "Bansuri Agarbathi Lavender (120g)",
+    "category": "packet-series",
+    "folder": "packet-series",
+    "filename": "packet-series-lavender-120",
+    "sizes": [
+      "60g",
+      "120g"
+    ],
+    "mrp": [
+      45,
+      75
+    ],
+    "b2bPrice": [
+      34,
+      56
+    ],
+    "minB2bQty": 50,
+    "gstRate": 12,
+    "isBestseller": false,
+    "isNew": false,
+    "description": "Calming French lavender fragrance engineered to relax minds and reduce stress."
+  },
+  {
+    "id": "bansuri-packet-chandan-19",
+    "name": "Bansuri Agarbathi Chandan (19g)",
+    "category": "packet-series",
+    "folder": "packet-series",
+    "filename": "packet-series-chandan-19",
+    "sizes": [
+      "19g",
+      "60g",
+      "120g"
+    ],
+    "mrp": [
+      15,
+      45,
+      75
+    ],
+    "b2bPrice": [
+      11,
+      34,
+      56
+    ],
+    "minB2bQty": 100,
+    "gstRate": 12,
+    "isBestseller": true,
+    "isNew": false,
+    "description": "Pure Mysore sandalwood aroma delivering sacred ambiance during pujas and festivals."
+  },
+  {
+    "id": "bansuri-premium-packet-royal",
+    "name": "Bansuri Royal Agarbathi (100g)",
+    "category": "premium-packet-series",
+    "folder": "premium-packet-series",
+    "filename": "premium-packet-royal",
+    "sizes": [
+      "100g",
+      "250g"
+    ],
+    "mrp": [
+      90,
+      210
+    ],
+    "b2bPrice": [
+      68,
+      158
+    ],
+    "minB2bQty": 40,
+    "gstRate": 12,
+    "isBestseller": true,
+    "isNew": true,
+    "description": "Luxury royal blend with natural essential oils and hand-rolled charcoal base."
+  },
+  {
+    "id": "bansuri-special-beats-45",
+    "name": "Bansuri Special Beats (45g)",
+    "category": "special-series",
+    "folder": "special-series",
+    "filename": "special-beats-45",
+    "sizes": [
+      "45g",
+      "100g"
+    ],
+    "mrp": [
+      35,
+      75
+    ],
+    "b2bPrice": [
+      26,
+      56
+    ],
+    "minB2bQty": 60,
+    "gstRate": 12,
+    "isBestseller": true,
+    "isNew": false,
+    "description": "Special fusion formula with vibrant aromatic spices and sweet floral resins."
+  },
+  {
+    "id": "bansuri-pouch-classic",
+    "name": "Bansuri Zipper Pouch Classic (250g)",
+    "category": "pouch-series",
+    "folder": "pouch-series",
+    "filename": "pouch-classic",
+    "sizes": [
+      "250g",
+      "500g"
+    ],
+    "mrp": [
+      140,
+      260
+    ],
+    "b2bPrice": [
+      105,
+      195
+    ],
+    "minB2bQty": 30,
+    "gstRate": 12,
+    "isBestseller": true,
+    "isNew": false,
+    "description": "Resealable zipper pouch preserving freshness of classic incense sticks for months."
+  },
+  {
+    "id": "bansuri-wet-classic",
+    "name": "Bansuri Classic Wet Dhoop",
+    "category": "wet-dhoop",
+    "folder": "wet-dhoop",
+    "filename": "wet-dhoop-classic",
+    "sizes": [
+      "50g",
+      "100g"
+    ],
+    "mrp": [
+      15,
+      30
+    ],
+    "b2bPrice": [
+      11,
+      22
+    ],
+    "minB2bQty": 100,
+    "gstRate": 12,
+    "isBestseller": true,
+    "isNew": false,
+    "description": "Pliable traditional wet dhoop sticks producing dense aromatic smoke."
+  },
+  {
+    "id": "bansuri-solid-guggal",
+    "name": "Bansuri Guggal Solid Dhoop (100g)",
+    "category": "solid-dhoop",
+    "folder": "solid-dhoop",
+    "filename": "solid-dhoop-guggal",
+    "sizes": [
+      "100g"
+    ],
+    "mrp": [
+      50
+    ],
+    "b2bPrice": [
+      38
+    ],
+    "minB2bQty": 60,
+    "gstRate": 12,
+    "isBestseller": true,
+    "isNew": false,
+    "description": "Pure unadulterated guggal resin dhoop sticks for purifying home environment."
+  },
+  {
+    "id": "bansuri-sambrani-cup-12",
+    "name": "Bansuri Special Cup Sambrani (12N)",
+    "category": "sambrani",
+    "folder": "sambrani",
+    "filename": "sambrani-special-cup",
+    "sizes": [
+      "12N"
+    ],
+    "mrp": [
+      72
+    ],
+    "b2bPrice": [
+      54
+    ],
+    "minB2bQty": 40,
+    "gstRate": 12,
+    "isBestseller": true,
+    "isNew": true,
+    "description": "Ready-to-use charcoal cups filled with natural benzoin sambrani resin and herbs."
+  },
+  {
+    "id": "bansuri-sambrani-cones-10",
+    "name": "Bansuri Cones Sambrani (10N)",
+    "category": "sambrani",
+    "folder": "sambrani",
+    "filename": "sambrani-cones",
+    "sizes": [
+      "10N"
+    ],
+    "mrp": [
+      15
+    ],
+    "b2bPrice": [
+      11
+    ],
+    "minB2bQty": 100,
+    "gstRate": 12,
+    "isBestseller": true,
+    "isNew": false,
+    "description": "Dense aromatic sambrani incense cones with ceramic burner stand included."
+  },
+  {
+    "id": "bansuri-sambrani-sticks-10",
+    "name": "Bansuri Sambrani Dhoop (10N & 15N)",
+    "category": "sambrani",
+    "folder": "sambrani",
+    "filename": "sambrani-sticks",
+    "sizes": [
+      "10N",
+      "15N"
+    ],
+    "mrp": [
+      15,
+      25
+    ],
+    "b2bPrice": [
+      11,
+      18
+    ],
+    "minB2bQty": 100,
+    "gstRate": 12,
+    "isBestseller": true,
+    "isNew": false,
+    "description": "Traditional cylindrical sambrani dhoop sticks offering continuous slow burn."
+  },
+  {
+    "id": "bansuri-sambrani-rose-10",
+    "name": "Bansuri Cones Rose (10N)",
+    "category": "sambrani",
+    "folder": "sambrani",
+    "filename": "sambrani-rose-cones",
+    "sizes": [
+      "10N"
+    ],
+    "mrp": [
+      15
+    ],
+    "b2bPrice": [
+      11
+    ],
+    "minB2bQty": 100,
+    "gstRate": 12,
+    "isBestseller": false,
+    "isNew": false,
+    "description": "Rose infused aromatic incense cones delivering delightful floral fragrance."
+  },
+  {
+    "id": "bansuri-sambrani-chandan-10",
+    "name": "Bansuri Cones Chandan (10N)",
+    "category": "sambrani",
+    "folder": "sambrani",
+    "filename": "sambrani-chandan-cones",
+    "sizes": [
+      "10N"
+    ],
+    "mrp": [
+      15
+    ],
+    "b2bPrice": [
+      11
+    ],
+    "minB2bQty": 100,
+    "gstRate": 12,
+    "isBestseller": false,
+    "isNew": false,
+    "description": "Sandalwood scented sambrani cones providing serene spiritual atmosphere."
+  },
+  {
+    "id": "vasu-agarbathi-60",
+    "name": "Vasu Premium Agarbathi (60g)",
+    "category": "vasu",
+    "folder": "vasu",
+    "filename": "vasu-60",
+    "sizes": [
+      "60g",
+      "108g"
+    ],
+    "mrp": [
+      50,
+      95
+    ],
+    "b2bPrice": [
+      38,
+      71
+    ],
+    "minB2bQty": 50,
+    "gstRate": 12,
+    "isBestseller": true,
+    "isNew": false,
+    "description": "Iconic Vasu series featuring ancient Vedic herbs and rare aromatic bark oils."
+  },
+  {
+    "id": "bansuri-hexa-classic",
+    "name": "Bansuri Hexa Pack Classic",
+    "category": "hexa",
+    "folder": "hexa",
+    "filename": "hexa-classic",
+    "sizes": [
+      "100g"
+    ],
+    "mrp": [
+      60
+    ],
+    "b2bPrice": [
+      45
+    ],
+    "minB2bQty": 60,
+    "gstRate": 12,
+    "isBestseller": true,
+    "isNew": false,
+    "description": "Hexagonal export pack of premium hand-rolled incense sticks."
+  }
+]

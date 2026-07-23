@@ -532,8 +532,8 @@ export const AdminDashboard: React.FC = () => {
                       <td className="py-3 font-bold">₹{p.price}</td>
                       <td className="py-3 text-brand-sandalwood-800 dark:text-brand-gold-900 font-extrabold">₹{p.b2bPrice} <span className="text-[8px] text-brand-charcoal-400 font-semibold">({p.minB2bQty} min)</span></td>
                       <td className="py-3">
-                        <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${p.stock < 300 ? 'bg-red-50 text-red-600 border border-red-200 dark:bg-red-950/20' : 'bg-brand-cream-100 text-brand-charcoal-700 dark:bg-brand-charcoal-850 dark:text-brand-cream-200'}`}>
-                          {p.stock} units
+                        <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${(p.stock || 0) < 300 ? 'bg-red-50 text-red-600 border border-red-200 dark:bg-red-950/20' : 'bg-brand-cream-100 text-brand-charcoal-700 dark:bg-brand-charcoal-850 dark:text-brand-cream-200'}`}>
+                          {p.stock || 0} units
                         </span>
                       </td>
                     </tr>

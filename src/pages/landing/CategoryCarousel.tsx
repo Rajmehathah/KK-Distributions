@@ -1,222 +1,265 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, ShoppingCart, Star, Sparkles, Cookie, Flame, CupSoda, ShieldCheck, ShoppingBag, Eye } from 'lucide-react';
-import { CATEGORIES, PRODUCTS } from '../../data/dummyData';
-import type { Product } from '../../data/dummyData';
-import { useCartStore } from '../../store/cartStore';
-import { useAuthStore } from '../../store/authStore';
-import { showToast } from '../../store/toastStore';
-import OptimizedImage from '../../components/common/OptimizedImage';
-
-const iconMap: Record<string, React.ComponentType<any>> = {
-  Sparkles,
-  Cookie,
+import { motion } from 'framer-motion';
+import {
   Flame,
-  CupSoda,
-  ShieldCheck,
+  Sparkles,
+  Crown,
+  Package,
+  Box,
   ShoppingBag,
-};
+  Award,
+  Droplet,
+  FlameKindling,
+  Layers,
+  Flower2,
+  ShieldCheck,
+  Hexagon,
+  ArrowRight,
+  ChevronRight,
+} from 'lucide-react';
+
+export interface CategoryCardData {
+  id: string;
+  name: string;
+  count: string;
+  description: string;
+  products?: string[];
+  route: string;
+  icon: React.ComponentType<{ className?: string }>;
+}
+
+const CATEGORY_SERIES: CategoryCardData[] = [
+  {
+    id: 'packet-series',
+    name: 'Packet Series (Regular)',
+    count: '8 Products',
+    products: ['Classic', 'Vibe', 'Pineapple', 'Mogra', 'Lavender', 'Chandan', 'Champa', 'Rose'],
+    description: 'Traditional daily-use incense collection available in multiple fragrances and pack sizes.',
+    route: '/orders?category=packet-series',
+    icon: Flame,
+  },
+  {
+    id: 'premium-packet-series',
+    name: 'Premium Packet Series',
+    count: '3 Products',
+    products: ['Classic', 'Lavender', 'MY3'],
+    description: 'Large premium packs for long-lasting fragrance and wholesale customers.',
+    route: '/orders?category=premium-packet-series',
+    icon: Sparkles,
+  },
+  {
+    id: 'special-series',
+    name: 'Special Series',
+    count: '4 Products',
+    products: ['Beats', 'Melody', 'Natya', 'Kisna'],
+    description: 'Premium signature fragrances with unique aromatic blends.',
+    route: '/orders?category=special-series',
+    icon: Crown,
+  },
+  {
+    id: 'pouch-series',
+    name: 'Pouch Series',
+    count: '8 Products',
+    description: 'Economical pouch packs suitable for everyday use.',
+    route: '/orders?category=pouch-series',
+    icon: Package,
+  },
+  {
+    id: 'special-pouch-series',
+    name: 'Special Pouch Series',
+    count: '4 Products',
+    description: 'Premium fragrance pouches featuring signature blends.',
+    route: '/orders?category=special-pouch-series',
+    icon: Box,
+  },
+  {
+    id: 'premium-pouch-series',
+    name: 'Premium Pouch Series',
+    count: '9 Products',
+    description: 'Large premium stand-up pouches for homes and retailers.',
+    route: '/orders?category=premium-pouch-series',
+    icon: ShoppingBag,
+  },
+  {
+    id: 'premium-special-pouch-series',
+    name: 'Premium Special Pouch Series',
+    count: '4 Products',
+    description: 'Premium special fragrance pouches in large packs.',
+    route: '/orders?category=premium-special-pouch-series',
+    icon: Award,
+  },
+  {
+    id: 'wet-dhoop',
+    name: 'Wet Dhoop Series',
+    count: '4 Products',
+    description: 'Traditional wet dhoop cones for temples and pooja.',
+    route: '/orders?category=wet-dhoop',
+    icon: Droplet,
+  },
+  {
+    id: 'premium-wet-dhoop',
+    name: 'Premium Wet Dhoop Series',
+    count: '5 Products',
+    description: 'Deluxe wet dhoop collection with richer fragrance.',
+    route: '/orders?category=premium-wet-dhoop',
+    icon: FlameKindling,
+  },
+  {
+    id: 'solid-dhoop',
+    name: 'Solid Dhoop Series',
+    count: '4 Products',
+    description: 'Solid dhoop jars crafted for long-lasting spiritual aroma.',
+    route: '/orders?category=solid-dhoop',
+    icon: Layers,
+  },
+  {
+    id: 'sambrani',
+    name: 'Sambrani Series',
+    count: '5 Products',
+    description: 'Traditional sambrani, cones and cup sambrani products.',
+    route: '/orders?category=sambrani',
+    icon: Flower2,
+  },
+  {
+    id: 'vasu-series',
+    name: 'Vasu Series',
+    count: '3 Products',
+    description: 'Premium devotional incense inspired by temple traditions.',
+    route: '/orders?category=vasu-series',
+    icon: ShieldCheck,
+  },
+  {
+    id: 'hexa-series',
+    name: 'Hexa Series',
+    count: '4 Products',
+    description: 'Compact Hexa incense sticks available in signature fragrances.',
+    route: '/orders?category=hexa-series',
+    icon: Hexagon,
+  },
+];
 
 export const CategoryCarousel: React.FC = () => {
   const navigate = useNavigate();
-  const { addItem } = useCartStore();
-  const { user } = useAuthStore();
-  const [selectedCat, setSelectedCat] = useState(CATEGORIES[0].id);
-  const productsScrollRef = useRef<HTMLDivElement>(null);
-
-  const isB2B = user?.isB2B || false;
-
-  const filteredProducts = PRODUCTS.filter((p) => p.category === selectedCat).slice(0, 6);
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (productsScrollRef.current) {
-      const { scrollLeft } = productsScrollRef.current;
-      const scrollTo = direction === 'left' ? scrollLeft - 320 : scrollLeft + 320;
-      productsScrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
-    }
-  };
-
-  const handleAddToCart = (e: React.MouseEvent, product: Product) => {
-    e.stopPropagation();
-    e.preventDefault();
-    addItem(product, 1);
-    showToast(`Added ${product.name} to cart.`, 'success');
-  };
-
-  const handleProductClick = (productId: string) => {
-    navigate(`/products?id=${productId}`);
-  };
 
   return (
-    <section className="py-24 bg-gradient-to-b from-brand-cream-50 to-brand-cream-100 dark:from-brand-charcoal-950 dark:to-brand-charcoal-900 border-t border-brand-orange-100/5 dark:border-brand-gold-900/5 transition-colors duration-300">
+    <section className="py-20 sm:py-24 bg-[#FAF8F5] dark:bg-brand-charcoal-950 border-t border-brand-orange-100/10 dark:border-brand-gold-900/10 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* HEADER SECTION */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mb-16">
-          <div className="space-y-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-brand-orange-900 dark:text-brand-gold-900">
-              Premium Showcase
-            </span>
-            <h2 className="text-3xl font-extrabold text-brand-charcoal-900 dark:text-brand-cream-50 uppercase tracking-tight">
-              Explore Our Catalog
-            </h2>
-          </div>
-          <button
-            onClick={() => navigate('/products')}
-            className="text-xs font-extrabold uppercase tracking-widest text-brand-orange-900 dark:text-brand-gold-900 hover:text-brand-orange-700 dark:hover:text-brand-gold-800 transition-colors flex items-center gap-1 hover:underline"
-          >
-            <span>View Full Catalog ({PRODUCTS.length})</span>
-            <ChevronRight className="w-4 h-4" />
-          </button>
-        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+          
+          {/* LEFT SIDE COLUMN */}
+          <div className="lg:col-span-4 lg:sticky lg:top-28 lg:self-start space-y-8">
+            <div className="space-y-4">
+              {/* Small Orange Label */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-orange-900/10 dark:bg-brand-gold-900/10 border border-brand-orange-900/20 dark:border-brand-gold-900/20 text-brand-orange-900 dark:text-brand-gold-900 text-xs font-extrabold uppercase tracking-widest">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>PREMIUM COLLECTION</span>
+              </div>
 
-        {/* CATEGORIES BUTTONS BAR */}
-        <div className="flex items-center gap-3 overflow-x-auto pb-6 no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
-          {CATEGORIES.map((cat) => {
-            const IconComp = iconMap[cat.icon] || ShoppingBag;
-            const isSelected = selectedCat === cat.id;
+              {/* Large Heading */}
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-brand-charcoal-900 dark:text-brand-cream-50 uppercase tracking-tight leading-[0.95]">
+                OUR
+                <br />
+                PRODUCTS
+              </h2>
 
-            return (
+              {/* Small Description */}
+              <p className="text-sm sm:text-base text-brand-charcoal-600 dark:text-brand-cream-300 font-medium leading-relaxed max-w-md">
+                Explore our complete collection of premium incense, dhoop and spiritual products crafted with tradition and quality.
+              </p>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-3.5 pt-2">
               <button
-                key={cat.id}
-                onClick={() => setSelectedCat(cat.id)}
-                className={`flex items-center gap-2.5 px-6 py-4 rounded-2xl border text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${
-                  isSelected
-                    ? 'bg-gradient-to-tr from-brand-orange-900 to-brand-gold-900 border-transparent text-brand-cream-100 shadow-md shadow-brand-orange-900/10'
-                    : 'bg-white dark:bg-brand-charcoal-900 border-brand-orange-100/10 dark:border-brand-gold-900/10 text-brand-charcoal-700 dark:text-brand-cream-300 hover:border-brand-orange-900/30'
-                }`}
+                onClick={() => navigate('/orders')}
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl bg-gradient-to-tr from-brand-orange-900 to-brand-gold-900 text-brand-cream-100 font-extrabold text-xs uppercase tracking-widest shadow-lg shadow-brand-orange-900/20 hover:scale-[1.02] active:scale-[0.98] transition-all group"
               >
-                <IconComp className={`w-4 h-4 ${isSelected ? 'text-brand-cream-100' : 'text-brand-orange-900 dark:text-brand-gold-900'}`} />
-                <span>{cat.name}</span>
+                <span>Explore Products</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
-            );
-          })}
-        </div>
 
-        {/* PRODUCT CAROUSEL VIEWPORT */}
-        <div className="relative mt-8 group/carousel">
-          
-          {/* NAVIGATION CHEVRONS */}
-          <button
-            onClick={() => scroll('left')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-xl bg-white/90 dark:bg-brand-charcoal-900/90 border border-brand-orange-100/10 dark:border-brand-gold-900/10 shadow-lg text-brand-charcoal-800 dark:text-brand-cream-50 flex items-center justify-center hover:bg-brand-orange-900 hover:text-brand-cream-100 dark:hover:bg-brand-gold-900 transition-all opacity-0 group-hover/carousel:opacity-100 -left-5"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          
-          <button
-            onClick={() => scroll('right')}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-xl bg-white/90 dark:bg-brand-charcoal-900/90 border border-brand-orange-100/10 dark:border-brand-gold-900/10 shadow-lg text-brand-charcoal-800 dark:text-brand-cream-50 flex items-center justify-center hover:bg-brand-orange-900 hover:text-brand-cream-100 dark:hover:bg-brand-gold-900 transition-all opacity-0 group-hover/carousel:opacity-100 -right-5"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
+              <button
+                onClick={() => navigate('/dealer')}
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl border-2 border-brand-orange-900/30 dark:border-brand-gold-900/30 bg-white/50 dark:bg-brand-charcoal-900/50 hover:bg-brand-orange-900/10 dark:hover:bg-brand-gold-900/10 text-brand-charcoal-900 dark:text-brand-cream-50 font-extrabold text-xs uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all"
+              >
+                <span>Become a Dealer</span>
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
 
-          {/* DYNAMIC PRODUCT SLIDER GRID */}
-          <div
-            ref={productsScrollRef}
-            className="flex gap-6 overflow-x-auto py-4 px-2 no-scrollbar scroll-smooth"
-          >
-            <AnimatePresence mode="wait">
-              {filteredProducts.map((p) => {
-                const finalUnitPrice = isB2B ? p.b2bPrice : p.price;
+          {/* RIGHT SIDE GRID */}
+          <div className="lg:col-span-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {CATEGORY_SERIES.map((cat, index) => {
+                const IconComp = cat.icon;
                 return (
                   <motion.div
-                    key={p.id}
-                    layout
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.25 }}
-                    onClick={() => handleProductClick(p.id)}
-                    className="w-[280px] flex-shrink-0 group/card bg-white dark:bg-brand-charcoal-900 border border-brand-orange-100/5 dark:border-brand-gold-900/5 shadow-sm hover:shadow-xl hover:shadow-brand-orange-900/5 rounded-2xl p-4 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 cursor-pointer relative overflow-hidden"
+                    key={cat.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{ duration: 0.4, delay: index * 0.04 }}
+                    whileHover={{ y: -6, scale: 1.02 }}
+                    onClick={() => navigate(cat.route)}
+                    className="group relative bg-white dark:bg-brand-charcoal-900 rounded-[24px] p-6 sm:p-7 border border-brand-orange-100/10 dark:border-brand-gold-900/10 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-none hover:shadow-[0_16px_32px_rgba(234,88,12,0.12)] hover:border-brand-orange-500/40 hover:ring-1 hover:ring-brand-orange-500/20 transition-all duration-300 cursor-pointer flex flex-col justify-between h-full overflow-hidden"
                   >
-                    {/* TOP BADGES */}
-                    <div className="absolute top-4 left-4 z-10 flex flex-col gap-1.5">
-                      {p.isBestseller && (
-                        <span className="px-2 py-0.5 text-[8px] font-bold uppercase rounded-md bg-brand-orange-900 text-brand-cream-100 tracking-wider shadow">
-                          Bestseller
-                        </span>
-                      )}
-                      {p.isNew && (
-                        <span className="px-2 py-0.5 text-[8px] font-bold uppercase rounded-md bg-brand-gold-900 text-brand-cream-100 tracking-wider shadow">
-                          New Launch
-                        </span>
-                      )}
-                    </div>
-
-                    {/* PRODUCT VISUAL IMAGE */}
-                    <div className="w-full h-44 rounded-xl shadow-inner mb-4 flex items-center justify-center relative overflow-hidden border border-brand-sandalwood-500/10 dark:border-brand-gold-900/10">
-                      <OptimizedImage
-                        productId={p.id}
-                        category={p.category}
-                        alt={p.name}
-                        className="w-full h-full"
-                      />
-                      <div className="absolute inset-0 bg-black/5 opacity-0 group-hover/card:opacity-100 transition-opacity flex items-center justify-center">
-                        <div className="w-10 h-10 rounded-full bg-white text-brand-charcoal-900 flex items-center justify-center shadow-md transform translate-y-3 group-hover/card:translate-y-0 transition-all duration-300">
-                          <Eye className="w-5 h-5" />
+                    <div>
+                      {/* Top Bar: Orange Icon + Product Count Badge */}
+                      <div className="flex items-center justify-between gap-4 mb-5">
+                        <div className="w-12 h-12 rounded-2xl bg-brand-orange-900/10 dark:bg-brand-gold-900/20 text-brand-orange-900 dark:text-brand-gold-900 flex items-center justify-center group-hover:bg-gradient-to-tr group-hover:from-brand-orange-900 group-hover:to-brand-gold-900 group-hover:text-brand-cream-100 transition-all duration-300 shadow-sm">
+                          <IconComp className="w-6 h-6" />
                         </div>
+
+                        <span className="px-3 py-1 rounded-full text-[11px] font-extrabold uppercase tracking-wider bg-brand-orange-900/10 text-brand-orange-900 dark:bg-brand-gold-900/15 dark:text-brand-gold-900 border border-brand-orange-900/15 dark:border-brand-gold-900/20">
+                          {cat.count}
+                        </span>
                       </div>
-                    </div>
 
-                    {/* RATINGS */}
-                    <div className="flex items-center gap-1 mb-1">
-                      <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                      <span className="text-[10px] font-extrabold text-brand-charcoal-900 dark:text-brand-cream-100">
-                        {p.rating}
-                      </span>
-                      <span className="text-[9px] text-brand-charcoal-400 dark:text-brand-cream-300 font-semibold">
-                        ({p.reviewsCount})
-                      </span>
-                    </div>
+                      {/* Card Info */}
+                      <div className="space-y-2.5">
+                        <h3 className="text-lg sm:text-xl font-bold text-brand-charcoal-900 dark:text-brand-cream-50 uppercase tracking-tight group-hover:text-brand-orange-950 dark:group-hover:text-brand-gold-900 transition-colors">
+                          {cat.name}
+                        </h3>
 
-                    {/* DETAILS */}
-                    <div className="space-y-1 mb-4">
-                      <h3 className="text-xs font-bold text-brand-charcoal-900 dark:text-brand-cream-50 uppercase tracking-wide truncate">
-                        {p.name}
-                      </h3>
-                      <p className="text-[10px] text-brand-charcoal-500 dark:text-brand-cream-300 font-semibold">
-                        {p.unit} &bull; {p.origin.split(',')[0]}
-                      </p>
-                    </div>
-
-                    {/* FOOTER ACTIONS */}
-                    <div className="flex items-center justify-between border-t border-brand-orange-100/5 dark:border-brand-gold-900/5 pt-3.5">
-                      <div>
-                        <div className="flex items-baseline gap-1">
-                          <span className="text-sm font-black text-brand-charcoal-900 dark:text-brand-cream-50">
-                            ₹{finalUnitPrice}
-                          </span>
-                          {!isB2B && (
-                            <span className="text-[9px] text-brand-charcoal-400 line-through">
-                              ₹{p.price}
-                            </span>
-                          )}
-                        </div>
-                        <p className="text-[8px] text-brand-orange-900 dark:text-brand-gold-900 font-bold uppercase mt-0.5">
-                          {isB2B ? 'Wholesale Enabled' : `B2B: ₹${p.b2bPrice} (min ${p.minB2bQty})`}
+                        <p className="text-xs sm:text-sm text-brand-charcoal-600 dark:text-brand-cream-300 font-medium leading-relaxed">
+                          {cat.description}
                         </p>
-                      </div>
 
-                      <button
-                        onClick={(e) => handleAddToCart(e, p)}
-                        className="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-orange-900 to-brand-gold-900 text-brand-cream-100 flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-md shadow-brand-orange-900/10"
-                        title="Add to Basket"
-                      >
-                        <ShoppingCart className="w-4 h-4" />
-                      </button>
+                        {cat.products && cat.products.length > 0 && (
+                          <div className="pt-2 flex flex-wrap gap-1.5">
+                            {cat.products.map((p, pIdx) => (
+                              <span
+                                key={pIdx}
+                                className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-brand-cream-100 dark:bg-brand-charcoal-800 text-brand-charcoal-700 dark:text-brand-cream-200 border border-brand-orange-100/5 dark:border-brand-gold-900/10"
+                              >
+                                {p}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Bottom Action */}
+                    <div className="pt-5 mt-5 border-t border-brand-orange-100/10 dark:border-brand-gold-900/10 flex items-center justify-between text-xs font-extrabold uppercase tracking-widest text-brand-orange-900 dark:text-brand-gold-900 group-hover:text-brand-orange-950 dark:group-hover:text-brand-gold-800">
+                      <span>Explore</span>
+                      <div className="w-8 h-8 rounded-full bg-brand-orange-900/10 dark:bg-brand-gold-900/10 flex items-center justify-center group-hover:bg-brand-orange-900 group-hover:text-brand-cream-100 dark:group-hover:bg-brand-gold-900 dark:group-hover:text-brand-charcoal-900 group-hover:translate-x-1 transition-all duration-300">
+                        <ArrowRight className="w-4 h-4" />
+                      </div>
                     </div>
                   </motion.div>
                 );
               })}
-            </AnimatePresence>
+            </div>
           </div>
 
         </div>
-
       </div>
     </section>
   );
 };
+
 export default CategoryCarousel;
+

@@ -1,150 +1,139 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Flame } from 'lucide-react';
 
 interface OptimizedImageProps {
   productId?: string;
   category?: string;
-  src?: string; // Original CSS class or gradient
+  src?: string;
   alt: string;
   className?: string;
 }
 
-// Curated high-resolution, premium spiritual incense and packaging Unsplash assets matching the Bansuri catalogue
-const PRODUCT_IMAGES: Record<string, string> = {
-  // Category 1: Packet Series
-  'bansuri-packet-classic-19': 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80', // sandalwood incense burning
-  'bansuri-packet-classic-120': 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80',
-  'bansuri-packet-vibe-120': 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=600&q=80', // vibrant spiritual smoke
-  'bansuri-packet-pineapple-42': 'https://images.unsplash.com/photo-1595853035070-59a39fe84de3?auto=format&fit=crop&w=600&q=80', // pineapple sweet flame
-  'bansuri-packet-mogra-19': 'https://images.unsplash.com/photo-1602989423168-52fb97992987?auto=format&fit=crop&w=600&q=80', // jasmine mogra ambient
-  'bansuri-packet-lavender-120': 'https://images.unsplash.com/photo-1528183429752-a97d0bf99b5a?auto=format&fit=crop&w=600&q=80', // calm lavender field
-  'bansuri-packet-chandan-19': 'https://images.unsplash.com/photo-1508500383182-6c18550db061?auto=format&fit=crop&w=600&q=80', // sandalwood logs
-  'bansuri-packet-rose-120': 'https://images.unsplash.com/photo-1602989423168-52fb97992987?auto=format&fit=crop&w=600&q=80', // floral rose burner
+// Extracted local asset mapping
+const LOCAL_PRODUCT_IMAGES: Record<string, string> = {
+  // Sambrani Series
+  'bansuri-sambrani-cup-12': '/assets/images/products/sambrani/sambrani-special-cup.webp',
+  'bansuri-sambrani-cones-10': '/assets/images/products/sambrani/sambrani-cones.webp',
+  'bansuri-sambrani-sticks-10': '/assets/images/products/sambrani/sambrani-sticks.webp',
+  'bansuri-sambrani-rose-10': '/assets/images/products/sambrani/sambrani-rose-cones.webp',
+  'bansuri-sambrani-chandan-10': '/assets/images/products/sambrani/sambrani-chandan-cones.webp',
 
-  // Category 2: Special Series
-  'bansuri-special-beats-45': 'https://images.unsplash.com/photo-1612182062633-9ff3b3598eeb?auto=format&fit=crop&w=600&q=80', // beats golden aura
-  'bansuri-special-beats-100': 'https://images.unsplash.com/photo-1612182062633-9ff3b3598eeb?auto=format&fit=crop&w=600&q=80',
-  'bansuri-special-melody-100': 'https://images.unsplash.com/photo-1595853035070-59a39fe84de3?auto=format&fit=crop&w=600&q=80', // melody smoke
-  'bansuri-special-natya-45': 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=600&q=80', // spiritual dance natya
-  'bansuri-special-kissa-100': 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80', // story kissa lore
+  // Packet Series (Regular)
+  'packet-classic': '/images/products/packet-series/classic.jpeg',
+  'bansuri-packet-classic-19': '/images/products/packet-series/classic.jpeg',
+  'bansuri-packet-classic-120': '/images/products/packet-series/classic.jpeg',
+  
+  'packet-vibe': '/images/products/packet-series/vibe.jpeg',
+  'bansuri-packet-vibe-120': '/images/products/packet-series/vibe.jpeg',
 
-  // Category 3: Pouch Series
-  'bansuri-pouch-classic': 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80',
-  'bansuri-pouch-chandan': 'https://images.unsplash.com/photo-1508500383182-6c18550db061?auto=format&fit=crop&w=600&q=80',
-  'bansuri-pouch-mogra': 'https://images.unsplash.com/photo-1602989423168-52fb97992987?auto=format&fit=crop&w=600&q=80',
-  'bansuri-pouch-pineapple': 'https://images.unsplash.com/photo-1595853035070-59a39fe84de3?auto=format&fit=crop&w=600&q=80',
+  'packet-pineapple': '/images/products/packet-series/pineapple.webp',
+  'bansuri-packet-pineapple-42': '/images/products/packet-series/pineapple.webp',
 
-  // Category 4: Wet Dhoop
-  'bansuri-wet-classic': 'https://images.unsplash.com/photo-1609137144813-2d2c161947b1?auto=format&fit=crop&w=600&q=80', // cones on bronze plate
-  'bansuri-wet-chandan': 'https://images.unsplash.com/photo-1609137144813-2d2c161947b1?auto=format&fit=crop&w=600&q=80',
-  'bansuri-wet-rose': 'https://images.unsplash.com/photo-1609137144813-2d2c161947b1?auto=format&fit=crop&w=600&q=80',
+  'packet-mogra': '/images/products/packet-series/mogra.jpg',
+  'bansuri-packet-mogra-19': '/images/products/packet-series/mogra.jpg',
 
-  // Category 5: Premium Wet Dhoop
-  'bansuri-premium-wet-classic': 'https://images.unsplash.com/photo-1609137144813-2d2c161947b1?auto=format&fit=crop&w=600&q=80', // dhoop cups and cones
-  'bansuri-premium-wet-rose': 'https://images.unsplash.com/photo-1609137144813-2d2c161947b1?auto=format&fit=crop&w=600&q=80',
-  'bansuri-premium-wet-guggal': 'https://images.unsplash.com/photo-1609137144813-2d2c161947b1?auto=format&fit=crop&w=600&q=80',
+  'packet-lavender': '/images/products/packet-series/lavender.jpeg',
+  'bansuri-packet-lavender-120': '/images/products/packet-series/lavender.jpeg',
 
-  // Category 6: Solid Dhoop
-  'bansuri-solid-guggal': 'https://images.unsplash.com/photo-1602989423168-52fb97992987?auto=format&fit=crop&w=600&q=80',
-  'bansuri-solid-chandan': 'https://images.unsplash.com/photo-1602989423168-52fb97992987?auto=format&fit=crop&w=600&q=80',
+  'packet-chandan': '/images/products/packet-series/chandan.jpg',
+  'bansuri-packet-chandan-19': '/images/products/packet-series/chandan.jpg',
 
-  // Category 7: Sambrani Series
-  'bansuri-sambrani-cup-12': 'https://images.unsplash.com/photo-1609137144813-2d2c161947b1?auto=format&fit=crop&w=600&q=80', // sambrani cup burning
-  'bansuri-sambrani-cones-10': 'https://images.unsplash.com/photo-1602989423168-52fb97992987?auto=format&fit=crop&w=600&q=80',
+  'packet-champa': '/images/products/packet-series/champa.jpg',
+  'bansuri-packet-champa': '/images/products/packet-series/champa.jpg',
 
-  // Category 8: Premium Series
-  'vasu-agarbathi-60': 'https://images.unsplash.com/photo-1612182062633-9ff3b3598eeb?auto=format&fit=crop&w=600&q=80',
-  'vasu-agarbathi-108': 'https://images.unsplash.com/photo-1612182062633-9ff3b3598eeb?auto=format&fit=crop&w=600&q=80',
-  'bansuri-hexa-classic': 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80'
+  'packet-rose': '/images/products/packet-series/rose.jpeg',
+  'bansuri-packet-rose-19': '/images/products/packet-series/rose.jpeg',
+
+  // Premium & Special Series
+  'bansuri-premium-packet-royal': '/assets/images/products/premium-packet-series/premium-packet-royal.webp',
+  'bansuri-special-beats-45': '/assets/images/products/special-series/special-beats-45.webp',
+  'bansuri-pouch-classic': '/assets/images/products/pouch-series/pouch-classic.webp',
+  'bansuri-wet-classic': '/assets/images/products/wet-dhoop/wet-dhoop-classic.webp',
+  'bansuri-solid-guggal': '/assets/images/products/solid-dhoop/solid-dhoop-guggal.webp',
+  'vasu-agarbathi-60': '/assets/images/products/vasu/vasu-60.webp',
+  'bansuri-hexa-classic': '/assets/images/products/hexa/hexa-classic.webp'
 };
 
-const CATEGORY_FALLBACKS: Record<string, string> = {
-  'bansuri-packet': 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80',
-  'bansuri-special': 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=600&q=80',
-  'bansuri-pouch': 'https://images.unsplash.com/photo-1595853035070-59a39fe84de3?auto=format&fit=crop&w=600&q=80',
-  'wet-dhoop': 'https://images.unsplash.com/photo-1609137144813-2d2c161947b1?auto=format&fit=crop&w=600&q=80',
-  'premium-wet-dhoop': 'https://images.unsplash.com/photo-1609137144813-2d2c161947b1?auto=format&fit=crop&w=600&q=80',
-  'solid-dhoop': 'https://images.unsplash.com/photo-1602989423168-52fb97992987?auto=format&fit=crop&w=600&q=80',
-  'sambrani-series': 'https://images.unsplash.com/photo-1609137144813-2d2c161947b1?auto=format&fit=crop&w=600&q=80',
-  'premium-agarbathi-series': 'https://images.unsplash.com/photo-1612182062633-9ff3b3598eeb?auto=format&fit=crop&w=600&q=80'
-};
+const DEFAULT_FALLBACK_IMAGE = '/images/products/packet-series/classic.jpeg';
 
-const DUMMY_DEFAULT = 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80'; // Sandalwood incense default
-
-const getResolvedUrl = (productId?: string, category?: string, src?: string) => {
-  if (src && src.startsWith('http')) {
+const getResolvedUrl = (productId?: string, src?: string): string => {
+  if (src && (src.startsWith('http') || src.startsWith('/'))) {
     return src;
   }
-  if (productId && PRODUCT_IMAGES[productId]) {
-    return PRODUCT_IMAGES[productId];
+  if (productId && LOCAL_PRODUCT_IMAGES[productId]) {
+    return LOCAL_PRODUCT_IMAGES[productId];
   }
-  if (category && CATEGORY_FALLBACKS[category]) {
-    return CATEGORY_FALLBACKS[category];
-  }
-  return DUMMY_DEFAULT;
+  return DEFAULT_FALLBACK_IMAGE;
 };
 
 export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   productId,
-  category,
+  category: _category,
   src,
   alt,
   className = ''
 }) => {
-  const [imgUrl, setImgUrl] = useState<string>(() => getResolvedUrl(productId, category, src));
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [hasError, setHasError] = useState(false);
+  const initialUrl = getResolvedUrl(productId, src);
+  const [imgUrl, setImgUrl] = useState<string>(initialUrl);
+  const [isLoaded, setIsLoaded] = useState<boolean>(true);
+  const [hasError, setHasError] = useState<boolean>(false);
+  const imgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    setIsLoaded(false);
-    setHasError(false);
-    setImgUrl(getResolvedUrl(productId, category, src));
-  }, [productId, category, src]);
+    const res = getResolvedUrl(productId, src);
+    if (res !== imgUrl) {
+      setImgUrl(res);
+      setHasError(false);
+    }
+  }, [productId, src]);
 
-  const handleLoad = () => {
-    setIsLoaded(true);
-  };
+  useEffect(() => {
+    if (imgRef.current && imgRef.current.complete && imgRef.current.naturalWidth > 0) {
+      setIsLoaded(true);
+    }
+  }, [imgUrl]);
 
   const handleError = () => {
-    setHasError(true);
-    // Fall back to category or generic
-    const fallbackCategoryUrl = category && CATEGORY_FALLBACKS[category];
-    if (fallbackCategoryUrl && imgUrl !== fallbackCategoryUrl) {
-      setImgUrl(fallbackCategoryUrl);
+    if (imgUrl !== DEFAULT_FALLBACK_IMAGE) {
+      setImgUrl(DEFAULT_FALLBACK_IMAGE);
+      setHasError(false);
     } else {
-      setImgUrl(DUMMY_DEFAULT);
+      setHasError(true);
     }
   };
 
-  const isIncenseCategory = 
-    category?.startsWith('bansuri') || 
-    category?.includes('dhoop') || 
-    category?.includes('sambrani') || 
-    category?.includes('agarbathi');
+  if (hasError) {
+    return (
+      <div className={`relative overflow-hidden bg-gradient-to-br from-brand-orange-950/20 via-brand-gold-900/10 to-brand-orange-900/30 border border-brand-orange-500/20 rounded-2xl flex flex-col items-center justify-center p-4 text-center ${className}`}>
+        <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-orange-900 to-brand-gold-900 text-brand-cream-100 flex items-center justify-center shadow-md mb-2.5">
+          <Flame className="w-6 h-6 animate-pulse" />
+        </div>
+        <span className="text-[10px] font-black uppercase tracking-widest text-brand-orange-900 dark:text-brand-gold-900 mb-0.5">
+          BANSURI FMCG
+        </span>
+        <span className="text-[11px] font-extrabold text-brand-charcoal-800 dark:text-brand-cream-100 line-clamp-1 uppercase tracking-tight">
+          {alt}
+        </span>
+      </div>
+    );
+  }
 
   return (
-    <div className={`relative overflow-hidden w-full h-full bg-brand-cream-200 dark:bg-brand-charcoal-800 transition-colors duration-300 ${className}`}>
-      
-      {/* SHIMMER PLACEHOLDER COMPONENT */}
-      {!isLoaded && !hasError && (
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent dark:via-white/5 animate-shimmer bg-[length:200%_100%]" />
+    <div className={`relative overflow-hidden bg-brand-cream-100 dark:bg-brand-charcoal-800 ${className}`}>
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-brand-orange-500/10 to-transparent animate-shimmer" />
       )}
-
-      {/* RENDER DYNAMIC IMAGE */}
       <img
+        ref={imgRef}
         src={imgUrl}
         alt={alt}
         loading="lazy"
-        onLoad={handleLoad}
+        onLoad={() => setIsLoaded(true)}
         onError={handleError}
-        className={`w-full h-full object-cover transition-transform duration-500 hover:scale-105 ${
-          isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+        className={`w-full h-full object-contain p-2 transition-opacity duration-300 ${
+          isLoaded ? 'opacity-100' : 'opacity-90'
         }`}
       />
-
-      {/* BRAND CARD OVERLAY WATERMARK */}
-      {isLoaded && isIncenseCategory && (
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-sandalwood-900/40 via-transparent to-transparent pointer-events-none" />
-      )}
     </div>
   );
 };
